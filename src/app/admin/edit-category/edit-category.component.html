@@ -1,0 +1,53 @@
+<section>
+    <div class=" container">
+        <div class="row">
+            <div class="col-lg-8">
+                <form #cateForm="ngForm" (ngSubmit)="onSubmit(cateForm.valid && cateForm.value)" >
+                    <div class="from-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Category Name</label>
+                            <input type="text" [(ngModel)]="category.name" 
+                                required
+                                #name ="ngModel"
+                                class="form-control" 
+                                placeholder="Category Name" 
+                                name="name">
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger"  >
+                                    <div *ngIf="name.errors">
+                                        Category Name requirred
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="displayOrder">Display Order</label>
+                            <input
+                                [ngClass]="{'is-invalid': displayOrder.invalid && (displayOrder.dirty || displayOrder.touched)}" 
+                                required
+                                type="number" 
+                                class="form-control" 
+                                id="displayOrder"
+                                placeholder="Display Order" 
+                                name="displayOrder"
+                                #displayOrder="ngModel"
+                                min="1"
+                                [(ngModel)]="category.displayOrder" 
+                                >
+                        </div>
+                        <div *ngIf="displayOrder.invalid && (displayOrder.dirty || displayOrder.touched)" class="text-danger" >
+                            <div *ngIf="displayOrder.errors?.['required']" >
+                                Display Order requirred
+                            </div>
+                            <div *ngIf="displayOrder.errors?.['min']">
+                                Display number should be greater then 0
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button  type="submit" [disabled]="!cateForm.valid" class="btn btn-primary my-3 float-right">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>    
+
+    {{category | json}}
+</section>
