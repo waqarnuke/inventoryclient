@@ -42,12 +42,12 @@ export class EditCategoryComponent implements OnInit {
       console.log(this.route.snapshot.url[0].path);
     }
     else{
-      const newCategory = {...category};
-      console.log(newCategory);
-      this.adminService.createCategory(newCategory).subscribe( (response:any) => {
-      this.tastr.success("New Category have been added.")
-      this.router.navigate(['/admin/category']);
-    })
+        const newCategory = {...category};
+        console.log(newCategory);
+        this.adminService.createCategory(newCategory).subscribe( (response:any) => {
+        this.tastr.success("New Category have been added.")
+        this.router.navigate(['/admin/category']);
+      })
     }
   }
 

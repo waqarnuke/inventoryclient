@@ -1,0 +1,144 @@
+<section>
+    <form class="mt-4" #productForm="ngForm" (ngSubmit)="onSubmit(productForm.valid && productForm.value)" >
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="name">Product Name</label>
+                <input type="text" [(ngModel)]="product.title" 
+                    required
+                    #title ="ngModel"
+                    class="form-control" 
+                    placeholder="Product Name" 
+                    name="title">
+                    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger"  >
+                        <div *ngIf="title.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+            
+                <label for="name">ISBN</label>
+                <input type="text" [(ngModel)]="product.isbn" 
+                    required
+                    #isbn ="ngModel"
+                    class="form-control" 
+                    placeholder="ISBN" 
+                    name="isbn">
+                    <div *ngIf="isbn.invalid && (isbn.dirty || isbn.touched)" class="text-danger"  >
+                        <div *ngIf="isbn.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+
+                    <label for="name">Category</label>
+                    <select 
+                        required
+                        id="category" class="form-select" 
+                        name="categoryId" 
+                        [(ngModel)]="product.categoryId" 
+                        
+                        placeholder="Select Category" 
+                        
+                        >
+                        <option *ngFor="let type of categories"
+                                [selected]="product.categoryId === type.id"
+                                [ngValue]="type.id">{{type.name}}</option>
+                    </select>
+                    
+                <label for="name">author</label>
+                <input type="text" [(ngModel)]="product.author" 
+                    required
+                    #author ="ngModel"
+                    class="form-control" 
+                    placeholder="author" 
+                    name="author">
+                    <div *ngIf="author.invalid && (author.dirty || author.touched)" class="text-danger"  >
+                        <div *ngIf="author.errors">
+                            Product Name requirred
+                        </div>
+                    </div>  
+                
+                    <label for="name">listPrice</label>
+                    <input type="text" [(ngModel)]="product.listPrice" 
+                        required
+                        #listPrice ="ngModel"
+                        class="form-control" 
+                        placeholder="listPrice" 
+                        name="listPrice">
+                        <div *ngIf="listPrice.invalid && (listPrice.dirty || listPrice.touched)" class="text-danger"  >
+                            <div *ngIf="listPrice.errors">
+                                Product Name requirred
+                            </div>
+                        </div>    
+                        
+            </div>
+            <div class="col-md-6 text-center">
+                <div class="form-group ">
+                    <img [src]="product.imageUrl  ? product.imageUrl : photofilepath" alt="" height="250px" width="200"> <br/>
+                    <input type="file" (change)="this.onUpload($event)" class="mt-3">
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="name">Description</label>
+                <textarea type="text" [(ngModel)]="product.description" 
+                    required
+                    #description ="ngModel"
+                    class="form-control" 
+                    placeholder="Description" 
+                    name="description"></textarea>
+                    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger"  >
+                        <div *ngIf="description.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+            </div>
+            
+            <div class="form-group col-md-3">
+                <label for="name">price</label>
+                <input type="text" [(ngModel)]="product.price" 
+                    required
+                    #price ="ngModel"
+                    class="form-control" 
+                    placeholder="price" 
+                    name="price">
+                    <div *ngIf="price.invalid && (price.dirty || price .touched)" class="text-danger"  >
+                        <div *ngIf="price.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="name">price50</label>
+                <input type="text" [(ngModel)]="product.price50" 
+                    required
+                    #price50 ="ngModel"
+                    class="form-control" 
+                    placeholder="price50" 
+                    name="price50">
+                    <div *ngIf="price50.invalid && (price50.dirty || price50.touched)" class="text-danger"  >
+                        <div *ngIf="price50.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="name">price100</label>
+                <input type="text" [(ngModel)]="product.price100" 
+                    required
+                    #price100 ="ngModel"
+                    class="form-control" 
+                    placeholder="price100" 
+                    name="price100">
+                    <div *ngIf="price100.invalid && (price100.dirty || price100.touched)" class="text-danger"  >
+                        <div *ngIf="price100.errors">
+                            Product Name requirred
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group col-md-6">
+                
+            </div>
+            
+        </div>
+        <button  type="submit" [disabled]="!productForm.valid" class="btn btn-primary my-3 float-right">Save</button>
+    </form>
+    {{product | json}}
+</section>

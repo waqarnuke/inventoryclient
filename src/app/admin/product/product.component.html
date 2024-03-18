@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 140px;" >
+    <!-- <h1>Welcome to {{title}}</h1> -->
+    <div class="row pt-4">
+        <div class="col-6 text-primary">
+            <h3 class="text-primary">Product</h3>
+        </div>
+        <div class="col-6 text-end">
+            <button [routerLink]="['/admin/productcreate']" class="btn btn-outline-success">
+                <i class="fa fa-plus-circle"></i> New
+            </button>
+        </div>
+    </div>
+    <table class="table table-borderd table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>ISBN</th>
+                <th>Author</th>
+                <th>List Price</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="list-unstyled" *ngFor="let product of products">
+                <td>{{product.title}}</td>
+                <td>{{product.isbn}}</td>
+                <td>{{product.author}}</td>
+                <td>{{product.listPrice}}</td>
+                <td>{{product.category}}</td>
+                <td>
+                    <a class="fa-solid fa-pen-to-square">
+                        <i class="fa fa-edit fa-2x me-5 text-dark" [routerLink]="['/admin/productedit', product.id]"></i>
+                        <i class="fa fa-trash fa-2x me-5 text-dark" (click)="Delete(product.id)"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
