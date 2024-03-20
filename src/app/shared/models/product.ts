@@ -13,6 +13,22 @@ export interface Product {
     category: string
   }
  
+  export class ProductCls implements Product
+  {
+  
+    id=0
+    title = '';
+    description= '';
+    isbn = '';
+    author= '';
+    listPrice = 0;
+    price = 0;
+    price50 = 0;
+    price100 = 0;
+    imageUrl = '';
+    categoryId= 0;
+    category = "";
+  }
   
 export interface IProductToCreate {
     title: string

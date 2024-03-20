@@ -7,7 +7,8 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:'',component :HomeComponent},
-  {path:'shop',component :ShopComponent},
+  {path:'shop',
+    loadChildren:() => import('./shop/shop.module').then(m => m.ShopModule)},
   {path:'admin',
     loadChildren: () =>  import('./admin/admin.module').then(m => m.AdminModule)},
   {path:'**', redirectTo:'', pathMatch:'full'}

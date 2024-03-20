@@ -25,24 +25,22 @@ export class EditProductFormComponent implements OnInit {
 
     }
   ngOnInit(): void {
-    this.photofilepath = this.adminService.PhotoUrl + "placeholder.jpg";
+    const id = this.route.snapshot.paramMap.get('id')
+    if(!id)
+    {
+      this.photofilepath = this.adminService.PhotoUrl + "placeholder.jpg";
+    }
+    
     console.log(this.photofilepath)
-    // const id = this.route.snapshot.paramMap.get('id')
-    // if(id)
-    // {
-    //   this.photofilepath = this.product.imageUrl;
-    //   console.log(this.photofilepath)
-    // }
-    // else
-    // {
-     
-    // }
   }
   
   onSubmit(product:ProductFormValues){
     const id = this.route.snapshot.paramMap.get('id')
     if(id)
     {
+      product.imageUrl = this.photoFileName;
+      const newproduct = {...product};
+      console.log(newproduct);
       const updateProduct = {...this.product, ...product};
       if(id)this.adminService.udpateProduct(updateProduct,+id).subscribe( (response:any) =>{
         this.tastr.success("New Category have been udpated.")
@@ -70,10 +68,11 @@ export class EditProductFormComponent implements OnInit {
 
     this.adminService.uploadPhoto(formData).subscribe((response:any) => {
       this.photoFileName = response;
-      
+      this.product.imageUrl = "";
+      this.photofilepath = "" ;
       this.photofilepath = this.adminService.PhotoUrl + this.photoFileName;
       
-      console.log(this.photoFileName)
+      console.log(this.photofilepath )
     } )
   }
 }
